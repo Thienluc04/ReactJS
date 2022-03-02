@@ -1,33 +1,32 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import axios from "axios";
-const getRandomPhotos = (page) => {
-  return axios
-    .get(`https://picsum.photos/v2/list?page=${page}&limit=8`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+const getRandomPhotos = async (page) => {
+  try {
+    const response = await axios.get(
+      `https://picsum.photos/v2/list?page=${page}&limit=8`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 // https://picsum.photos/v2/list?page=2&limit=100
 
 const Photos = () => {
   const [randomPhotos, setRandomPhotos] = useState([]);
   const [nextPage, setNextPage] = useState(1);
+  console.log(randomPhotos);
 
-  const handleLoadMorePhotos = () => {
-    getRandomPhotos(nextPage).then((images) => {
-      const newPhotos = [...randomPhotos, ...images];
-      console.log(randomPhotos);
-      console.log(images);
-      setRandomPhotos(newPhotos);
-      setNextPage(nextPage + 1);
-    });
+  const handleLoadMorePhotos = useRef({});
+  handleLoadMorePhotos.current = async () => {
+    const images = await getRandomPhotos(nextPage);
+    const newPhotos = [...randomPhotos, ...images];
+    setRandomPhotos(newPhotos);
+    setNextPage(nextPage + 1);
   };
 
   useEffect(() => {
-    handleLoadMorePhotos();
+    handleLoadMorePhotos.current();
   }, []);
   return (
     <Fragment>
@@ -48,7 +47,7 @@ const Photos = () => {
       </div>
       <div className="text-center">
         <button
-          onClick={handleLoadMorePhotos}
+          onClick={handleLoadMorePhotos.current}
           className="inline-block px-8 py-4 bg-purple-600 text-white"
         >
           Load more

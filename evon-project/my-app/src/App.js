@@ -1,10 +1,11 @@
+import React from "react";
 import "./App.scss";
-import Photos from "./components/photo/Photos";
+import Dropdown from "./components/Dropdown";
 
 function App() {
   return (
-    <div>
-      <Photos></Photos>
+    <div className="p-5">
+      <Dropdown></Dropdown>
     </div>
   );
 }
