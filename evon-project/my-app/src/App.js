@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
-import Dropdown from "./components/Dropdown";
+import MovieSearchApp from "./components/MovieSearchApp";
 
 function App() {
   return (
-    <div className="p-5">
-      <Dropdown></Dropdown>
+    <div>
+      <MovieSearchApp></MovieSearchApp>
     </div>
   );
 }
