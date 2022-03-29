@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./App.scss";
-import MovieSearchApp from "./components/MovieSearchApp";
+import SignUpFormHook from "./components/form/SignUpFormHook";
 
 function App() {
   return (
     <div>
-      <MovieSearchApp></MovieSearchApp>
+      <SignUpFormHook></SignUpFormHook>
     </div>
   );
 }

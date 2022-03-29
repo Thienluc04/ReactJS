@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
+// https://hn.algolia.com/api/v1/search?query=react
+
 const HackerNews = () => {
   const [hits, setHits] = useState([]);
   const [query, setQuery] = useState("");
