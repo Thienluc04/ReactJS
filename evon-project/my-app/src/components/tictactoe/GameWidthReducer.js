@@ -32,9 +32,9 @@ const reducer = (state, action) => {
   return state;
 };
 
-const Game = () => {
+const GameWidthReducer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const winner = caculateWinner(state.board);
+  const winner = caculateWinner(state.board2);
 
   const handleClick = (index) => {
     dispatch({
@@ -61,4 +61,4 @@ const Game = () => {
     </div>
   );
 };
-export default Game;
+export default GameWidthReducer;
